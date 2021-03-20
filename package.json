@@ -1,0 +1,13 @@
+{
+  "name": "hewan-discovery",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "redis": "^3.0.2"
+  },
+  "engines": {
+    "node": "15.x"
+  }
+}
