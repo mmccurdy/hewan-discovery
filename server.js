@@ -6,7 +6,7 @@ const redis = require('redis');
 const db = redis.createClient(process.env.REDIS_TLS_URL, { tls: { rejectUnauthorized: false } });
 
 const CHAR_LIST = 'BCDFGHJKLMNPQRSTVWXYZ2356789';
-// TODO(yurij): Replace with Plex & Chill URLs
+// TODO(yurij): Replace with Plex & Chill URIs
 const APP_STORE_URI = 'https://apps.apple.com/us/app/plex-movies-tv-music-more/id383457673';
 const PLAY_MARKET_URI = 'market://details?id=com.plexapp.android';
 
@@ -44,7 +44,8 @@ app.get('/code/:code', (req, res) => {
 app.get('/appstore', (req, res) => {
   const userAgent = req.headers['user-agent'];
   // /iPad|iPhone|iPod/.test(userAgent), let iOS be the default
-  res.redirect(301, /android/i.test(userAgent) ? PLAY_MARKET_URI : APP_STORE_URI);
+  // TODO(yurij): Change to 301 once we've update the URIs to point to the Plex & Chill app
+  res.redirect(302, /android/i.test(userAgent) ? PLAY_MARKET_URI : APP_STORE_URI);
 });
 
 app.listen(port, () => {
