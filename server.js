@@ -3,18 +3,15 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const redis = require('redis');
-const db = redis.createClient(process.env.REDIS_TLS_URL, {
-  tls: {
-    rejectUnauthorized: false
-  }});
+const db = redis.createClient(process.env.REDIS_TLS_URL, { tls: { rejectUnauthorized: false } });
 
-const CHAR_LIST = "BCDFGHJKLMNPQRSTVWXYZ2356789";
+const CHAR_LIST = 'BCDFGHJKLMNPQRSTVWXYZ2356789';
 
 app.use(express.json());
 
 app.get('', (req, res) => {
   res.send('o hai.');
-})
+});
 
 app.post('/code', (req, res) => {
   if (req.body.uri) {
@@ -26,9 +23,9 @@ app.post('/code', (req, res) => {
     });
   } else {
     res.status(400);
-    res.send('POST me a URI, dogg.')
+    res.send('POST me a URI, dogg.');
   }
-})
+});
 
 app.get('/code/:code', (req, res) => {
   db.get(req.params.code, (err, uri) => {
@@ -38,9 +35,9 @@ app.get('/code/:code', (req, res) => {
     } else {
       res.json({ uri });
     }
-  })
-})
+  });
+});
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
-})
+});
