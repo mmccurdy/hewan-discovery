@@ -6,9 +6,8 @@ const redis = require('redis');
 const db = redis.createClient(process.env.REDIS_TLS_URL, { tls: { rejectUnauthorized: false } });
 
 const CHAR_LIST = 'BCDFGHJKLMNPQRSTVWXYZ2356789';
-// TODO(yurij): Replace with Plex & Chill URIs
-const APP_STORE_URI = 'https://apps.apple.com/us/app/plex-movies-tv-music-more/id383457673';
-const PLAY_MARKET_URI = 'market://details?id=com.plexapp.android';
+const APP_STORE_URI = 'https://apps.apple.com/us/app/plexamp/id1561249120';
+const PLAY_MARKET_URI = 'market://details?id=tv.plex.labs.plexamp';
 
 app.use(express.json());
 
