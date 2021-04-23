@@ -55,6 +55,11 @@ router.get('/appstore', ctx => {
   ctx.redirect(/android/i.test(userAgent) ? PLAY_MARKET_URI : APP_STORE_URI);
 });
 
+router.get('/log', ctx => {
+  ctx.query.msg && console.log(`[GroupTinderClient] (${ctx.req.connection.remoteAddress}) ${ctx.query.msg}`);
+  ctx.body = null;
+})
+
 app
   .use(bodyParser())
   .use(router.routes())
