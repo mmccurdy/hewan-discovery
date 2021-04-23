@@ -56,7 +56,8 @@ router.get('/appstore', ctx => {
 });
 
 router.get('/log', ctx => {
-  ctx.query.msg && console.log(`[GroupTinderClient] (${ctx.req.connection.remoteAddress}) ${ctx.query.msg}`);
+  const { appName, level, msg } = ctx.query;
+  console.log(`[${appName}] (${ctx.req.headers['x-forwarded-for'] || ctx.req.connection.remoteAddress}) ${level} ${msg}`);
   ctx.body = null;
 })
 
